@@ -1,4 +1,4 @@
-/* Style the Todo List Container */
+
 div {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -6,28 +6,28 @@ div {
   text-align: center;
 }
 
-/* Style the input box for adding new tasks */
+
 input {
   padding: 10px;
   font-size: 16px;
   width: 70%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 10px; /* Reduce bottom margin */
+  margin-bottom: 10px;
   display: inline-block;
 }
 
-/* Style the 'Add Task' container (input and button) */
+
 .add-task-container {
   display: flex;
-  justify-content: flex-start; /* Align content to the left */
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
 }
 
 .add-task-container input {
-  width: 80%; /* Make the input smaller */
+  width: 80%; 
 }
 
 button {
@@ -38,20 +38,20 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 10px; /* Add margin between input and button */
+  margin-left: 10px;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
-/* Style the heading separator */
+
 h1 {
   margin-top: 30px;
   color: #333;
 }
 
-/* Style the todo items container */
+
 h2 {
   color: #007bff;
   margin-bottom: 10px;
@@ -62,18 +62,18 @@ ul {
   padding: 0;
 }
 
-/* Style individual todo item containers */
+
 .todo-item {
   height: 50px;
   display: flex;
-  justify-content: space-between; /* Keeps the todo content on the left and buttons on the right */
+  justify-content: space-between;
   align-items: center;
   padding: 20px 0 20px 0;
   background-color: #f8f4f4;
   margin: 20px 0;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  position: relative; /* Ensure buttons can be absolutely positioned */
+  position: relative; 
 }
 
 .todo-container {
@@ -89,21 +89,21 @@ ul {
   flex-grow: 1;
 }
 
-/* Mark completed tasks with a line-through */
+
 .todo-container span[style="text-decoration: line-through pink;"] {
   text-decoration: line-through;
   color: pink;
 }
 
-/* Style the action buttons (Done and Delete) */
+
 .todo-actions {
-  position: absolute; /* Position the buttons relative to the .todo-item */
-  right: 10px; /* Align to the right edge of the todo-item */
+  position: absolute; 
+  right: 10px;
   display: flex;
-  gap: 10px; /* Space between buttons */
+  gap: 10px; 
 }
 
-/* Style individual buttons */
+
 .todo-button {
   padding: 5px 10px;
   border: none;

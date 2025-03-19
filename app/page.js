@@ -23,7 +23,6 @@ export default function TodoList() {
       alert("Please enter a valid task!");
       return;
     }
-
     const res = await fetch("/api/todos", {
       method: "POST",
       headers: {
@@ -56,7 +55,7 @@ export default function TodoList() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: editingTodo.id,
+        id: editingTodo._id,  // ✅ Use _id
         task: editValue,
         isdone: editingTodo.isdone,
       }),
@@ -65,46 +64,43 @@ export default function TodoList() {
     const updatedTodo = await res.json();
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === updatedTodo.id ? updatedTodo : todo
+        todo._id === updatedTodo._id ? updatedTodo : todo
       )
     );
   
     setEditingTodo(null);
     setEditValue("");
   };
+
   
-  
-  const markAsDone = async (id, isdone, task) => {
+  const markAsDone = async (_id, isdone, task) => {
     const res = await fetch("/api/todos", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, task, isdone: !isdone }),
+      body: JSON.stringify({ id: _id, task, isdone: !isdone }),
     });
   
     const updatedTodo = await res.json();
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo.id === updatedTodo.id ? updatedTodo : todo
+        todo._id === updatedTodo._id ? updatedTodo : todo
       )
     );
   };
-  
 
 
-
-
-  const deleteTodo = async (id) => {
+  const deleteTodo = async (_id) => {
     await fetch("/api/todos", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ id: _id }),
     });
 
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== _id));
   };
 
   return (
@@ -122,67 +118,62 @@ export default function TodoList() {
 
       <h1>___________________________</h1>
       <h2>Tasks Todo</h2>
-
       <div className="main">
-        {todos.map((todo) => (
-          <div key={todo.id} className="todo-item">
-            <ul>
-              <div className="todo-container">
-                {editingTodo && editingTodo.id === todo.id ? (
-                 
-                  <input
-                    value={editValue}
-                    onChange={(e) => setEditValue(e.target.value)}
-                    onBlur={saveEdit}  
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        saveEdit();
-                      }
-                    }}
-                    autoFocus
-                  />
-                ) : (
-                  <span
-                    style={{
-                      textDecoration: todo.isdone ? "line-through pink" : "none",
-                    }}
-                  >
-                    &hearts; &nbsp;{todo.task}
-                  </span>
-                )}
-                <div className="todo-actions">
-                  {/* Edit button */}
-                  {!editingTodo || editingTodo.id !== todo.id ? (
-                    <button
-                      className="todo-button edit-button"
-                      onClick={() => editTodo(todo)}
-                    >
-                      Edit
-                    </button>
-                  ) : null}
+  {todos.map((todo) => (
+    <div key={todo._id} className="todo-item">  {/* ✅ Use _id as key */}
+      <ul>
+        <div className="todo-container">
+          {editingTodo && editingTodo._id === todo._id ? (
+            <input
+              value={editValue}
+              onChange={(e) => setEditValue(e.target.value)}
+              onBlur={saveEdit}  
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  saveEdit();
+                }
+              }}
+              autoFocus
+            />
+          ) : (
+            <span
+              style={{
+                textDecoration: todo.isdone ? "line-through pink" : "none",
+              }}
+            >
+              &hearts; &nbsp;{todo.task}
+            </span>
+          )}
+          <div className="todo-actions">
+            {!editingTodo || editingTodo._id !== todo._id ? (
+              <button
+                className="todo-button edit-button"
+                onClick={() => editTodo(todo)}
+              >
+                Edit
+              </button>
+            ) : null}
 
-                  {/* Done button */}
-                  <button
-                     className="todo-button done-button"
-                     onClick={() => markAsDone(todo.id, todo.isdone, todo.task)}
-                      >
-                        {todo.isdone ? "Undo" : "Done"}
-                      </button>
+            <button
+              className="todo-button done-button"
+              onClick={() => markAsDone(todo._id, todo.isdone, todo.task)}
+            >
+              {todo.isdone ? "Undo" : "Done"}
+            </button>
 
-
-                  {/* Delete button */}
-                  <button
-                    className="todo-button delete-button"
-                    onClick={() => deleteTodo(todo.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </ul>
+            <button
+              className="todo-button delete-button"
+              onClick={() => deleteTodo(todo._id)}
+            >
+              Delete
+            </button>
           </div>
-        ))}
-      </div>
+        </div>
+      </ul>
     </div>
+  ))}
+</div>
+
+ </div>
   );
 }
