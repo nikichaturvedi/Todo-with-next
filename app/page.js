@@ -55,7 +55,7 @@ export default function TodoList() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: editingTodo._id,  // ✅ Use _id
+        id: editingTodo._id,  
         task: editValue,
         isdone: editingTodo.isdone,
       }),
@@ -105,23 +105,24 @@ export default function TodoList() {
 
   return (
     <div>
-      <h1>TodoList With Next.js</h1>
+     <div className="input-container">
+     <h1>TodoList With Next.js</h1>
 
       <input
-        placeholder="Add a task"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
+       placeholder="Add a task"
+       value={newTodo}
+       onChange={(e) => setNewTodo(e.target.value)}
       />
       <br />
       <br />
       <button onClick={addNewTask}>Add Task</button>
+     </div>
 
-      <h1>___________________________</h1>
+      
       <h2>Tasks Todo</h2>
       <div className="main">
-  {todos.map((todo) => (
-    <div key={todo._id} className="todo-item">  {/* ✅ Use _id as key */}
-      <ul>
+      {todos.map((todo) => (
+      <div key={todo._id} className="todo-item"> 
         <div className="todo-container">
           {editingTodo && editingTodo._id === todo._id ? (
             <input
@@ -136,13 +137,17 @@ export default function TodoList() {
               autoFocus
             />
           ) : (
-            <span
+            <div
+              className="text-content"
               style={{
                 textDecoration: todo.isdone ? "line-through pink" : "none",
               }}
             >
-              &hearts; &nbsp;{todo.task}
-            </span>
+              <ul className="content-item">
+                <li>&hearts;</li>
+                <li> {todo.task}</li>
+              </ul>
+            </div>
           )}
           <div className="todo-actions">
             {!editingTodo || editingTodo._id !== todo._id ? (
@@ -169,7 +174,6 @@ export default function TodoList() {
             </button>
           </div>
         </div>
-      </ul>
     </div>
   ))}
 </div>
