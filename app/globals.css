@@ -1,8 +1,8 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 30px 50px; 
+  margin: 30px 70px; 
   padding: 0;
-  background-color: #8a9097;
+  background-color: #dfe9f4;
   text-align: center;
 }
 
@@ -72,7 +72,7 @@ input {
 
 button {
   padding: 10px 15px;
-  background-color: #416589;
+  background-color: #34608b;
   color: white;
   border: none;
   border-radius: 5px;
@@ -96,7 +96,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #a2b5cb;
+  background-color: rgb(162, 202, 244);
   padding: 12px;
   margin: 10px 0;
   border-radius: 5px;
@@ -177,7 +177,7 @@ ul {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
 
   .input-container{
     width: 80%;
@@ -266,4 +266,56 @@ ul {
     gap: 5px;
     width: auto; 
   }
+}
+
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-top: 50px;
+}
+
+.spinner {
+  font-size: 40px;
+  color: #ff5733;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.icon {
+  font-size: 50px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.edit-icon {
+  color: rgb(244, 244, 250);
+}
+
+.done-icon {
+  color: rgb(235, 241, 235);
+}
+
+.undo-icon {
+  color: rgb(248, 241, 228);
+}
+
+.delete-icon {
+  color: rgb(248, 229, 229);
+}
+
+.icon:hover {
+  transform: scale(1.2); 
 }
