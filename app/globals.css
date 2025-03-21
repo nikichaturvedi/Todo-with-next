@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
 body {
   font-family: Arial, sans-serif;
   margin: 30px 70px; 
@@ -317,5 +321,9 @@ ul {
 }
 
 .icon:hover {
+<<<<<<< HEAD
   transform: scale(1.2); 
+=======
+  transform: scale(1.2); /* Slight zoom effect */
+>>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
 }
