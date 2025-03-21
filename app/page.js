@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { FaEdit, FaCheck, FaTimes, FaTrash, FaSpinner } from "react-icons/fa";
@@ -17,16 +18,9 @@ export default function TodoList() {
         const res = await fetch("/api/todos");
         const data = await res.json();
 
-<<<<<<< HEAD
         const indexedTodos = data.map((todo, index) => ({
           ...todo,
-          originalIndex: index, 
-=======
-        // Store original position when first fetched
-        const indexedTodos = data.map((todo, index) => ({
-          ...todo,
-          originalIndex: index, // Store its original position
->>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
+          originalIndex: index,
         }));
         setTodos(indexedTodos);
       } catch (error) {
@@ -54,11 +48,7 @@ export default function TodoList() {
     const newTask = await res.json();
     setTodos((prevTodos) => [
       ...prevTodos,
-<<<<<<< HEAD
       { ...newTask, originalIndex: prevTodos.length }, 
-=======
-      { ...newTask, originalIndex: prevTodos.length }, // Store current index
->>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
     ]);
     setNewTodo("");
     toast.success("Task added successfully!");
@@ -100,22 +90,13 @@ export default function TodoList() {
   };
 
   const markAsDone = async (_id, isdone) => {
-<<<<<<< HEAD
-    const updatedTodos = [...todos];
+    const updatedTodos = [...todos]; 
 
+  
     const index = updatedTodos.findIndex((todo) => todo._id === _id);
     if (index === -1) return;
 
     
-=======
-    const updatedTodos = [...todos]; // Copy array
-
-    // Find the index of the task being updated
-    const index = updatedTodos.findIndex((todo) => todo._id === _id);
-    if (index === -1) return;
-
-    // Fetch updated task from API
->>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
     const res = await fetch("/api/todos", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -125,8 +106,7 @@ export default function TodoList() {
     const updatedTodo = await res.json();
     
     if (!isdone) {
-<<<<<<< HEAD
-      
+     
       updatedTodo.originalIndex = index;
       updatedTodos.splice(index, 1); 
       updatedTodos.push(updatedTodo); 
@@ -134,16 +114,6 @@ export default function TodoList() {
       
       updatedTodos.splice(index, 1); 
       updatedTodos.splice(updatedTodo.originalIndex, 0, updatedTodo); 
-=======
-      // Store original index before moving
-      updatedTodo.originalIndex = index;
-      updatedTodos.splice(index, 1); // Remove from current position
-      updatedTodos.push(updatedTodo); // Move to bottom
-    } else {
-      // Restore previous position when undone
-      updatedTodos.splice(index, 1); // Remove from bottom
-      updatedTodos.splice(updatedTodo.originalIndex, 0, updatedTodo); // Insert back at stored index
->>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
     }
 
     setTodos(updatedTodos);
@@ -261,5 +231,7 @@ export default function TodoList() {
 }
 
 
-
+ 
+ 
+       
 
