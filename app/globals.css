@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
 body {
   font-family: Arial, sans-serif;
   margin: 30px 70px; 
@@ -89,13 +85,13 @@ button:hover {
   background-color: #325582;
 }
 
-/* Todo List */
+
 ul {
   list-style: none;
   padding: 0;
 }
 
-/* Todo Item */
+
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -321,9 +317,5 @@ ul {
 }
 
 .icon:hover {
-<<<<<<< HEAD
-  transform: scale(1.2); 
-=======
-  transform: scale(1.2); /* Slight zoom effect */
->>>>>>> 4c78350 (Updated todo list logic to maintain original task order when undone)
+  transform: scale(1.2);
 }
